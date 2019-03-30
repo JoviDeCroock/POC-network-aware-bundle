@@ -7,22 +7,20 @@
     Modern / Legacy POC
   </title>
   <script>
-    var slower = ['slow-2g', '2g', '3g'];
-    if (window.navigator.connection) {
-      var scripts = document.getElementsByTagName('script');
-      if (slower.indexOf(navigator.connection.effectiveType) >= 0) {
-        var react = document.getElementById('react');
-        react.parentNode.removeChild(react);
-      } else {
-        var preact = document.getElementById('preact');
-        react.parentNode.removeChild(react);
+      var slower = ['slow-2g', '2g', '3g'];
+      var script = document.createElement("script");
+      var url = '/main.js'
+      if (window.navigator.connection) {
+        if (slower.indexOf(navigator.connection.effectiveType) >= 0) {
+          url="/main.preact.js";
+        }
       }
-    }
+      script.setAttribute('src', url);
+      script.setAttribute('type', 'text/javascript');
+      document.getElementsByTagName("head")[0].appendChild(script);
   </script>
 </head>
   <body>
-    <script id="preact" type="text/javascript" src="/main.preact.js"></script>
-    <script id="react" type="text/javascript" src="/main.js"></script>
     <div id ="root"></div>
   </body>
 </html>
