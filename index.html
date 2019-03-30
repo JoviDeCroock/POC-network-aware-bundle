@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    Modern / Legacy POC
+  </title>
+  <script>
+    var slower = ['slow-2g', '2g', '3g'];
+    if (window.navigator.connection) {
+      var scripts = document.getElementsByTagName('script');
+      if (slower.indexOf(navigator.connection.effectiveType) >= 0) {
+        var react = document.getElementById('react');
+        react.parentNode.removeChild(react);
+      } else {
+        var preact = document.getElementById('preact');
+        react.parentNode.removeChild(react);
+      }
+    }
+  </script>
+</head>
+  <body>
+    <script id="preact" type="text/javascript" src="/main.preact.js"></script>
+    <script id="react" type="text/javascript" src="/main.js"></script>
+    <div id ="root"></div>
+  </body>
+</html>
